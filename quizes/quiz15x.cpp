@@ -49,7 +49,8 @@ public:
         skeleton,
         troll,
         vampire,
-        zombie
+        zombie,
+        max_monsters
     };
     Monster(Type type, std::string_view name, std::string_view roar, int hp)
         :m_type{ type }
@@ -136,7 +137,7 @@ namespace MonsterGenerator {
     }
 
     Monster generate() {
-        return Monster{ Monster::skeleton, getName(Random::get(0, 5)), getRoar(Random::get(0, 5)), 4 };
+        return Monster{ static_cast<Monster::Type>(Random::get(0, Monster::max_monsters - 1)), getName(Random::get(0, 5)), getRoar(Random::get(0, 5)), Random::get(1, 100)};
     }
 }
 
